@@ -1,0 +1,16 @@
+version: "3"
+services:
+  postgress_db:
+    image: "postgres"
+    container_name: "typGraphql_postgress_2"
+    ports:
+      - "5432:5432"
+    volumes:
+      - typGraphql_postgress_2:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: typegraphql-example
+
+volumes:
+  typGraphql_postgress_2:
