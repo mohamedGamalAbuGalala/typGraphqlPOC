@@ -1,26 +1,35 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm'
 import { ObjectType, Field, ID, Root } from 'type-graphql'
 
+interface IUser {
+  id: string
+  firstName: string
+  lastName: string
+  email: string
+  password: string
+}
+
 @ObjectType()
-@Entity()
-export class User extends BaseEntity {
+export class User implements IUser {
+  constructor ({ id, firstName, lastName, email, password }: IUser) {
+    this.id = id
+    this.firstName = firstName
+    this.lastName = lastName
+    this.email = email
+    this.password = password
+  }
+
   @Field(() => ID)
-  @PrimaryGeneratedColumn()
-  id: number
+  id: string
 
   @Field()
-  @Column()
   firstName: string
 
   @Field()
-  @Column()
   lastName: string
 
   @Field()
-  @Column('text', { unique: true })
   email: string
 
-  @Column()
   password: string
 
   @Field()
